@@ -2,15 +2,16 @@
 {
     public class Database
     {
-        public const string PROD = "v1.0.1";
+        public const string PROD = "server=ugpbhkmapp0005;port=3306;user=uat_access;database=cdmdb;password=y2S#54INT46";
         public const string UAT = "server=ugpbhkmapp0002;port=3306;Database=amoldb;Uid=BillerUser;Pwd=B!ll3r@2022!;";
         public const string local = "server=127.0.0.1;port=3306;Database=amoldb;Uid=root;Pwd=Malaika27th";
-        public const string Connection = local;
+        public const string Connection = PROD;
     }
     public class Swagger
     {
         public const string VERSION = "v1.0.1";
-        public const string NAME = "Fintechs Api";
+        public const string NAME = "DT - Fintech APIs";
+        public const string DESCRIPTION = "Routes Transaction History Notifications to External Fintechs";
         public const string ENDPOINT = "/swagger/v1/swagger.json";
     }
     public class Jwt

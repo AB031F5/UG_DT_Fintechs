@@ -73,32 +73,32 @@ namespace UG_DT_InternalAmolCall.Logic.Fintech
                 using (var rsa = RSA.Create())
                 {
                     var privateFile = $@"-----BEGIN PRIVATE KEY-----
-MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCcwGAYHwg7DEiG
-Nsj3D9j8yEBxRm8B02ewAIMldd+s9E57in78SpPLPBj8G2SbsFbXIB7QsFs6tAQz
-baRjp0O6qAfGkx78Ue36Wg0eyWwp+KkkAUBHFUxFXSm80js5TZ0x/0I0xoovP9Cj
-2+a2nwfowzpI0MxEBJw1yJpohxE5PNlHNt/VYrdkZeXaaMy2+WE60RQFEI4tauOJ
-BUMPXvYDnekM17wcmDlEfceoEu33zJVjSQ90mL/9+3Iix63f7+eYnxFaTPCiNloj
-eqk5PbYLL8eiEn4dQzyQOekzMiiLQOkkm8PAPtNapsoolxEjpT8yOKevd18ZbW03
-N9Ls0KBFAgMBAAECggEACmZ9Obx9XaWaqO+49SOOYHSiSfcZZcPywkEWcoWCpMVv
-m6TRzh2IoYMdnpnsBU8gQ+p0APa35t+LfnoM3ovPjkft1CVuIzcFv4b6uIs2wQYo
-UCTrxeD04Y6lNqEK9ZS1FFx9C7wMmRv2f5jB6GYJg/kdbzgOBYlPcAYdBfMdl8WG
-KDgRb5Dpv7I9+OsS07mWLcmOJVRsKVxdEvHVk8goyIKdAYLyG+a708VgoHMnXDLx
-p5UOqX7lrpT21V2/GkAeaP6eB9JphqW+EX1jjrvMdae8Q/hELNO67w6x0RwD9qd6
-8RCqzRn968cBiTxeQXZ4LGu376mfdqqsNAh2A3VSAQKBgQC86LfvOfoRAiBX8c6b
-0/5wxN1pArx+rrNKdyhgt1E50Bk+QRnCTs37HLsttFmfhedVAwbjaLdKA+Yd5SnM
-3Wf+BKjVKfZPee+nNbcaWLeW9cLjGC28+VR1PPUenHJqGuxHs1KAjMDxANMfsFym
-S3Gc4W/kILMdpHVJy6Ph6FeSxQKBgQDUa/HmcYyQSkqO9Xkjjc5CoCjuuE+ducFx
-gi20s1ycjAU8PpEyGHhTtmDKKOEsuqURmYoUvUWS7xNDgFM4R5h+0I9w7tNmhCRG
-X2bAa+ARdRAnECHbMi+Djh/dnc3UdQiwPxcmU+JXDQ+AdZCeMR3GNwscznlDdg9r
-p78St5+vgQKBgH3ehef09mTsyMYwTNzRZOCYm3pDo3q5RqcgPBwtKQbfXGJ5mAM6
-5M4jd6hdWbYLz3Z6XNWbST0c2fAjaDWjdI3xZtkZa4/LDF6aUNVSNYl1WRRdYORg
-MOEo654o2adPJw4jMp6Kqmgqh4G+zgzTifDg2N/k1dOzZ57y+9AjMm6NAoGACU8R
-sr+XIVugGNO5E03LlC/gm1WIZ6kUSR0jU5/olxOrxxAW3NMlssVzSGiyNXuYcEUC
-QBZrTh0cAwFEpFq+3A/XuWM98GgqDstvfU886obuxkd2tFxmqKU50ERyGLVoRBD/
-urZCXP49h6ufQs90NpOC8Sg7ODGcS2N2hCN35AECgYB5KVsGdrYrsFwKwehBZbyO
-QAXZuTo3NGolQuTvd/r9eTw8iaFH/KAOQqfRc/K6TFMXIdEHy/k1nJWuNVcJLufd
-GJMZt/6KQisdvhOWJugOHk6fiv3UE89UDfd1M+Rx5plSu25tAeCcT8VBj4NlGo46
-SaThEVjCkvIBARR3NBvX2w==
+MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCTor9inK+5j0jd
+HOkpR/4EHuW5SSDEMGJLdHfcUApBWnkjUUNlfzcIkCoDKH+QOoiV1ir8aiemWVlp
+YqPn68D+xWWNv5SE9CLS8Z/Oxb+3u6xqQuPqLk2pwrP9rlO9eIrfn7Z4ZoghoL6I
+y4GRz31hCDpMtLtTLRZDad68VZ8y4E+/i6BxYunVOFMG/LzZsqBhc3XmvTNrucEw
+amLsH057oINPUzU/GmEjRHYxfK6sMxUjI/YrGPO39yau/0ppnqnAswaXN8WOx9uE
+FtiIEeNAqhxi+oej9CLOXvJBDstNcZpoB6uZiR/ohZTx+FUgXJJsm4PBalDTJzo2
+kGIEUCybAgMBAAECggEAGQ+2d1Hrzo8RKl+/AL/00dRA4NwWENe5x99EfYSkyQVH
+rQQdcbxPpkd6qkCUrvIQv4a0k1ad1nIyaF5TPopZn6X4oEBWQN+EjdRwcVRGQDU+
+hmdGczla+6dOkJCoLHCq+l0NR5D4KOU1ktkg7JSRTwhrhRvk9LChp93v7n6GYMdL
+DJjtSzX7BuGOKqezImj7PDdmE7mHiM00ZZZg0R+4/sAgLrd7HALQhDPF1dx/3TPT
+K0TP0BC06zpHX7p41+A3tb6YsXFH+Ix/GXQT6FcpmZY3HHCzXY1IjipVqmyp4WSc
+SEOPoGlltpkGCTepRpeIx2oKOSU8A1rAwnS2tK76mQKBgQDMUQ5pG/7jijyRsY6t
+CYjb0AGKtUUezHpjBBkHpZgeHcTHK3RcYXyK2+L3WvkINJLbn4QC1ZpKCb0FFWxc
+sqTWuMrNju/izkXRmOZOMnh7irmzSksQTHv5VJKZ82u710KCsKlg6IXglrHSMRrG
+9zIMvO5xYM/9KsvlapdPvb9xZQKBgQC4+zQQ4Oyuzq+ztMqkDIq+z4+M6dI1qJiZ
+0rG34lkGkT1ZofTxIZfvG4msFiHzbHj7YbTpcSRvpdLMBVyzcTo4JKQfWdVNpKFv
+JXMyE5/ZgczF6J6IzSgsKGMSies3dDGV2AB6O7lPMo+cIo4b80FRXCBdzc268QgY
+0x5YivZF/wKBgE4tJYpqP9joZ8yHV8Q1xbv1luFwAoaKTrncM4eNgOrlEQn0Qo2m
+b3TiNbHXiTnug9Ks8mHzQRnbKAvt6ox9fjz6b/6/FmJ98pEEI/r/rMH4jp1fa+FM
+opMAHSfyz+ILt1MyLVz7G16XympWh5xhsTDWiZWwKWUBHwslAchtHfdRAoGAYjxl
+piENELiK7rCwfPZ8KGEqJvd1vzFN+UK/RpxaEvbG0fcEkZn5ie3h6xXF6fRNO5Lj
+9KU1aGVz0Q138YPMG0y6LDwU3yry4IfO6WUqmuQnz2J97sCk+O5pzsqXs9dtDdqs
+Rj25Z6m+QnjHZ2iD46U9OxO0kfa3Chf0IamKqBkCgYAzacutczRnkKEKfZOeqwbd
+qX0wWeLeo76+uIZyobcfyJ/k0zmLP7gPYfaU1Lz2yxVYM9Ina8e2VyTj3ZyOH9lI
+ipPZOg9/QL9ks8wtR0Lo5e+OjyVX3LRySbhWksqrxvp89L8tP/AChN/SeWsW5wLr
+4BXM1oa2FapCZPGC5qqmcw==
 -----END PRIVATE KEY-----
 ";
                     log.Add($"++++++---- Using PK Private {privateFile} ");
@@ -141,18 +141,53 @@ SaThEVjCkvIBARR3NBvX2w==
             }
 
         }
+
+        public bool Verify(YoPaymentNoti requestBody)
+        {
+            try
+            {
+                var obj = new
+                {
+                    datetime = $"{requestBody.datetime}",
+                    method = $"{requestBody.method}",
+                    dataFields = new
+                    {
+                        dateTime = $"{requestBody.dataFields.dateTime}",
+                        accountNumber = $"{requestBody.dataFields.accountNumber}",
+                        accountName = $"{requestBody.dataFields.accountName}",
+                        type = $"{requestBody.dataFields.type}",
+                        amount = $"{requestBody.dataFields.amount}",
+                        amountInForeignCurrency = $"{requestBody.dataFields.amountInForeignCurrency}",
+                        foreignCurrency = $"{requestBody.dataFields.foreignCurrency}",
+                        exchangeRate = $"{requestBody.dataFields.exchangeRate}",
+                        narrative = $"{requestBody.dataFields.narrative}",
+                        reference = $"{requestBody.dataFields.reference}"
+                    }
+                };
+                string rqContent = JsonConvert.SerializeObject(obj);
+                string signature = ComputeSignature(rqContent, requestBody);
+                string hmac = ComputeHmac(rqContent, requestBody.hmacKey, requestBody);
+                var verifyData = VerifySignature(rqContent, signature);
+                return verifyData;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.StackTrace);
+            }
+        }
         private bool VerifySignature(string data, string signature)
         {
             using (var rsa = RSA.Create())
             {
                 var publicFile = @"-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnMBgGB8IOwxIhjbI9w/Y
-/MhAcUZvAdNnsACDJXXfrPROe4p+/EqTyzwY/Btkm7BW1yAe0LBbOrQEM22kY6dD
-uqgHxpMe/FHt+loNHslsKfipJAFARxVMRV0pvNI7OU2dMf9CNMaKLz/Qo9vmtp8H
-6MM6SNDMRAScNciaaIcROTzZRzbf1WK3ZGXl2mjMtvlhOtEUBRCOLWrjiQVDD172
-A53pDNe8HJg5RH3HqBLt98yVY0kPdJi//ftyIset3+/nmJ8RWkzwojZaI3qpOT22
-Cy/HohJ+HUM8kDnpMzIoi0DpJJvDwD7TWqbKKJcRI6U/Mjinr3dfGW1tNzfS7NCg
-RQIDAQAB
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk6K/YpyvuY9I3RzpKUf+
+BB7luUkgxDBiS3R33FAKQVp5I1FDZX83CJAqAyh/kDqIldYq/GonpllZaWKj5+vA
+/sVljb+UhPQi0vGfzsW/t7usakLj6i5NqcKz/a5TvXiK35+2eGaIIaC+iMuBkc99
+YQg6TLS7Uy0WQ2nevFWfMuBPv4ugcWLp1ThTBvy82bKgYXN15r0za7nBMGpi7B9O
+e6CDT1M1PxphI0R2MXyurDMVIyP2Kxjzt/cmrv9KaZ6pwLMGlzfFjsfbhBbYiBHj
+QKocYvqHo/Qizl7yQQ7LTXGaaAermYkf6IWU8fhVIFySbJuDwWpQ0yc6NpBiBFAs
+mwIDAQAB
 -----END PUBLIC KEY-----
 ";
                 rsa.ImportFromPem(publicFile.ToCharArray());

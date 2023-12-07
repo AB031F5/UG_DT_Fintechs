@@ -10,7 +10,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "DT - Fintech APIs",
+        Version = "v1",
+        Description = "Routes Transaction History Notifications to External Fintechs",
+        Contact = new Microsoft.OpenApi.Models.OpenApiContact
+        {
+            Name = "Uganda Digital Transformation",
+            Email = "abugdigitaltransformation@groups.absa.africa",
+        },
+    });
+});
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

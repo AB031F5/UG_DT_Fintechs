@@ -17,7 +17,6 @@ namespace UG_DT_Fintechs.Controllers
     {
         [HttpPost]
         [Route("PushYoUgandaPayment")]
-        [Authorize]
         public async Task<IActionResult> PushTxnHistoryNotification(YoPaymentNoti request)
         {
             BaseResponse baseResponse = new BaseResponse();
@@ -29,56 +28,27 @@ namespace UG_DT_Fintechs.Controllers
             try
             {
                 log.Add("------------------------------------------------- PushTxnHistory -------------------------------------------------");
-                var identity = HttpContext.User.Identity as ClaimsIdentity;
-                if (identity != null)
-                {
-                    string authHeader = HttpContext.Request.Headers["Authorization"].ToString();
-                    var credentialSecretKey = AuthenticationHeaderValue.Parse(authHeader).Parameter;
-
-                    log.Add($"Auth :::: {authHeader}");
-
-                    log.Add($"SecretKey :::: {credentialSecretKey}");
-
-                    var userClaims = identity.Claims;//process request
-
-                    if (userClaims != null)
-                    {
-                        log.Add($"All Claims :::: {userClaims}");
-                        string? name = userClaims.FirstOrDefault(o => o.Type == ClaimTypes.Name)?.Value.ToString();
-                        log.Add($"Name Claim :::: {name}");
-                        if (name.Equals(request.service))
-                        {
-                            log.Add($"Name Claims :::: is Valid");
-                            YoUgandaCall yo = new YoUgandaCall();
-                            log.Add($"API Request Bdy :::: {JsonConvert.SerializeObject(request)}");
-                            helpers.writeToFile(log, request.service);
-                            HttpResponseMessage yoResponseMessage = await yo.SendPaymentNotification(request);
-                            log2.Add($"HttpResponseMessage :::: {yoResponseMessage}");
-                            String yoJsonResponse = await yoResponseMessage.Content.ReadAsStringAsync();
-                            log2.Add($"yoJsonResponse :::: {yoJsonResponse}");
-                            if (yoResponseMessage != null && yoResponseMessage.IsSuccessStatusCode)
-                            {
-                                YoResponse yoResponse = JsonConvert.DeserializeObject<YoResponse>(yoJsonResponse.ToString());
-                                log2.Add($"yoJsonResponse Serialized :::: {JsonConvert.SerializeObject(yoResponse)}");
-                                helpers.writeToFile(log2, request.service);
-                                return Ok(yoResponse);
-                            }
-                            else
-                            {
-                                log2.Add($"BadRequest or Invalid Response");
-                                helpers.writeToFile(log2, request.service);
-                                return BadRequest();
-                            }
-                        }
-                        else
-                        {
-                            log.Add($"Request Bdy Service name ::{request.service}:: does not equal to Auth Bdy name ::{name}");
-                            return Unauthorized(new UnauthorizedResponse());
-                        }
-                    }
-                }
+                log.Add($"Name Claims :::: is Valid");
+                YoUgandaCall yo = new YoUgandaCall();
+                log.Add($"API Request Bdy :::: {JsonConvert.SerializeObject(request)}");
                 helpers.writeToFile(log, request.service);
-                return Unauthorized(new UnauthorizedResponse());
+                HttpResponseMessage yoResponseMessage = await yo.SendPaymentNotification(request);
+                log2.Add($"HttpResponseMessage :::: {yoResponseMessage}");
+                String yoJsonResponse = await yoResponseMessage.Content.ReadAsStringAsync();
+                log2.Add($"yoJsonResponse :::: {yoJsonResponse}");
+                if (yoResponseMessage != null && yoResponseMessage.IsSuccessStatusCode)
+                {
+                    YoResponse yoResponse = JsonConvert.DeserializeObject<YoResponse>(yoJsonResponse.ToString());
+                    log2.Add($"yoJsonResponse Serialized :::: {JsonConvert.SerializeObject(yoResponse)}");
+                    helpers.writeToFile(log2, request.service);
+                    return Ok(yoResponse);
+                }
+                else
+                {
+                    log2.Add($"BadRequest or Invalid Response");
+                    helpers.writeToFile(log2, request.service);
+                    return BadRequest();
+                }
             }
             catch (Exception ex)
             {
@@ -88,6 +58,23 @@ namespace UG_DT_Fintechs.Controllers
                 return BadRequest(new { error = ex.Message });
             }
 
+        }
+
+        [HttpPost]
+        [Route("VerifySignature")]
+        public IActionResult VerifyData(YoPaymentNoti request)
+        {
+            try
+            {
+                YoUgandaCall yo = new YoUgandaCall();
+                var isVerified = yo.Verify(request);
+                return Ok(new {isDataVerified = isVerified });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+                throw;
+            }
         }
     }
 }
