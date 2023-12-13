@@ -2,7 +2,7 @@
 {
     public class Database
     {
-        public const string PROD = "server=ugpbhkmapp0005;port=3306;user=uat_access;database=cdmdb;password=y2S#54INT46";
+        public const string PROD = "server=ugpbhkmapp0005;port=3306;user=uat_access;database=amoldb;password=y2S#54INT46";
         public const string UAT = "server=ugpbhkmapp0002;port=3306;Database=amoldb;Uid=BillerUser;Pwd=B!ll3r@2022!;";
         public const string local = "server=127.0.0.1;port=3306;Database=amoldb;Uid=root;Pwd=Malaika27th";
         public const string Connection = PROD;
@@ -62,8 +62,8 @@
     {
         public const string local = @"C:\Users\Ab031f5\Documents\YoLogs\";
         public const string UAT_SERVER_LOG = @"C:\Logs\AMOL_Endpoints\";
-        public const string PROD_SERVER_LOG = @"C:\Logs\AMOL_Endpoints\";
-        public const string Errorlogs = UAT_SERVER_LOG;
+        public const string PROD_SERVER_LOG = @"C:\Logs\YoUgandaFintech\Logs\";
+        public const string Errorlogs = PROD_SERVER_LOG;
     }
     public class StoredProcedure
     {

@@ -45,6 +45,8 @@ namespace UG_DT_InternalAmolCall.Logic.Fintech
 
                 var client = new HttpClient();
                 var request = new HttpRequestMessage(HttpMethod.Post, requestBody.endpoint);
+                request.Headers.Add("X-IBM-Client-Secret", $"rY8bG5kG2hB4qK5nE8vK1vI1dS3hO7sL8iU5bT6rD8eD5iJ4lA");
+                request.Headers.Add("X-IBM-Client-Id", $"0bc2e507-787e-4f1d-a33e-536819a54653");
                 request.Headers.Add("x-hmac", $"{hmac}");
                 request.Headers.Add("x-signature", $"{signature}");
                 var content = new StringContent(rqContent, null, "application/json");
@@ -59,7 +61,7 @@ namespace UG_DT_InternalAmolCall.Logic.Fintech
                 log.Add($"++++++----@@@@@@@@@@@@@@@@@ Exception :::: {ex.Message} ");
                 log.Add($"++++++----@@@@@@@@@@@@@@@@@ Stack :::: {ex.StackTrace} ");
                 helpers.writeToFile(log, requestBody.service);
-                throw new Exception(ex.StackTrace);
+                return null;
             }
         }
 

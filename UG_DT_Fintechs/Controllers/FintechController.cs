@@ -20,24 +20,38 @@ namespace UG_DT_Fintechs.Controllers
         public async Task<IActionResult> PushTxnHistoryNotification(YoPaymentNoti request)
         {
             BaseResponse baseResponse = new BaseResponse();
+            baseResponse.ErrorMessage = "Invalid Service for request";
             var currentUser = HttpContext.User;
-
             ArrayList log = new ArrayList();
             ArrayList log2 = new ArrayList();
             Helpers helpers = new Helpers();
+
+            var headers = Request.Headers;
+            log.Add("------------------------------------------------- PushTxnHistory -------------------------------------------------");
+            string serviceHeader = headers["Service"];
+            log.Add($"Service Name :::: {serviceHeader}");
+            if (serviceHeader != "YoUgandaService")
+            {
+                log.Add($"Service Name :::: Invalid");
+                return BadRequest(baseResponse);
+            }
+
+
+            
             try
             {
-                log.Add("------------------------------------------------- PushTxnHistory -------------------------------------------------");
+                
                 log.Add($"Name Claims :::: is Valid");
                 YoUgandaCall yo = new YoUgandaCall();
                 log.Add($"API Request Bdy :::: {JsonConvert.SerializeObject(request)}");
                 helpers.writeToFile(log, request.service);
                 HttpResponseMessage yoResponseMessage = await yo.SendPaymentNotification(request);
-                log2.Add($"HttpResponseMessage :::: {yoResponseMessage}");
-                String yoJsonResponse = await yoResponseMessage.Content.ReadAsStringAsync();
-                log2.Add($"yoJsonResponse :::: {yoJsonResponse}");
+                
                 if (yoResponseMessage != null && yoResponseMessage.IsSuccessStatusCode)
                 {
+                    log2.Add($"HttpResponseMessage :::: {yoResponseMessage}");
+                    String yoJsonResponse = await yoResponseMessage.Content.ReadAsStringAsync();
+                    log2.Add($"yoJsonResponse :::: {yoJsonResponse}");
                     YoResponse yoResponse = JsonConvert.DeserializeObject<YoResponse>(yoJsonResponse.ToString());
                     log2.Add($"yoJsonResponse Serialized :::: {JsonConvert.SerializeObject(yoResponse)}");
                     helpers.writeToFile(log2, request.service);
@@ -45,6 +59,7 @@ namespace UG_DT_Fintechs.Controllers
                 }
                 else
                 {
+                    String yoJsonResponse = await yoResponseMessage.Content.ReadAsStringAsync();
                     log2.Add($"BadRequest or Invalid Response");
                     helpers.writeToFile(log2, request.service);
                     return BadRequest();
@@ -66,6 +81,16 @@ namespace UG_DT_Fintechs.Controllers
         {
             try
             {
+                BaseResponse baseResponse = new BaseResponse();
+                baseResponse.ErrorMessage = "Invalid Service for request";
+
+                var headers = Request.Headers;
+                string serviceHeader = headers["Service"];
+                if (serviceHeader != "YoUgandaService")
+                {
+                    return BadRequest(baseResponse);
+                }
+
                 YoUgandaCall yo = new YoUgandaCall();
                 var isVerified = yo.Verify(request);
                 return Ok(new {isDataVerified = isVerified });
